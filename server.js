@@ -43,15 +43,22 @@ app.get('/admin', (req, res) => res.sendFile(path.join(__dirname, 'admin.html'))
 // apiApp.use(cors());
 // apiApp.use(express.json());
 
-// MongoDB Connection
-mongoose.connect(process.env.MONGO_URI)
-.then(() => {
-  console.log('Connected to MongoDB');
-})
-.catch((error) => {
-  console.error('MongoDB connection error:', error);
+// MongoDB Connection - require MONGO_URI to be set and use container-friendly defaults
+if (!process.env.MONGO_URI || typeof process.env.MONGO_URI !== 'string' || process.env.MONGO_URI.trim() === '') {
+  console.error('FATAL: MONGO_URI environment variable is not set or is empty.\n' +
+    'Set MONGO_URI (for example from MongoDB Atlas) before starting the app.');
+  // Exit so the hosting platform shows a clear failure instead of noisy mongoose errors
   process.exit(1);
-});
+}
+
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log('Connected to MongoDB');
+  })
+  .catch((error) => {
+    console.error('MongoDB connection error:', error);
+    process.exit(1);
+  });
 
 // Authentication middleware
 const authenticateToken = (req, res, next) => {
@@ -312,7 +319,9 @@ app.post('/api/reset-password', async (req, res) => {
 });
 
 // Start single server on BACKEND_PORT (default 7000) so frontend and API share origin
+// Bind to 0.0.0.0 so container platforms (Render, Docker) can accept external connections
 const PORT = process.env.PORT || process.env.BACKEND_PORT || 7000;
-app.listen(PORT, '127.0.0.1', () => {
-  console.log(`Kronos server (frontend+API) running on http://127.0.0.1:${PORT}`);
+const HOST = process.env.HOST || '0.0.0.0';
+app.listen(PORT, HOST, () => {
+  console.log(`Kronos server (frontend+API) running on http://${HOST === '0.0.0.0' ? '0.0.0.0' : HOST}:${PORT}`);
 });
