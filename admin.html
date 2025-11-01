@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kronos Admin Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Kronos Admin</h2>
+      <ul>
+        <li class="active">📊 Dashboard</li>
+        <li id="leaveRequestsMenu">📝 Leave Requests</li>
+        <li id="checkedInMenu">👥 Checked-in Employees</li>
+        <li id="allEmployeesMenu">👥 All Employees</li>
+        <li id="logoutBtn">🚪 Logout</li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header>
+        <div class="menu-icon" id="menuBtn">☰</div>
+        <h1 id="welcomeMessage">Welcome, Admin 👋</h1>
+        <p id="date"></p>
+      </header>
+
+      <!-- Dashboard Overview -->
+      <section id="dashboardSection" class="dashboard-section">
+        <div class="cards">
+          <div class="card fade-in">
+            <h3>Total Employees</h3>
+            <div class="metric" id="totalEmployees">3</div>
+          </div>
+
+          <div class="card fade-in">
+            <h3>Currently Checked In</h3>
+            <div class="metric" id="checkedInCount">0</div>
+          </div>
+
+          <div class="card fade-in">
+            <h3>Pending Leave Requests</h3>
+            <div class="metric" id="pendingLeaves">0</div>
+          </div>
+
+          <div class="card fade-in">
+            <h3>Today's Attendance</h3>
+            <div class="metric" id="todayAttendance">0%</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Leave Requests Section -->
+      <section id="leaveRequestsSection" class="leave-section" style="display: none;">
+        <h2>Leave Requests</h2>
+        <div class="leave-requests-container">
+          <div id="leaveRequestsList" class="leave-requests-list">
+            <!-- Leave requests will be populated here -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Checked-in Employees Section -->
+      <section id="checkedInSection" class="checked-in-section" style="display: none;">
+        <h2>Currently Checked-in Employees</h2>
+        <div class="checked-in-container">
+          <div id="checkedInList" class="checked-in-list">
+            <!-- Checked-in employees will be populated here -->
+          </div>
+        </div>
+      </section>
+
+      <!-- All Employees Section -->
+      <section id="allEmployeesSection" class="all-employees-section" style="display: none;">
+        <h2>All Employees</h2>
+        <div class="employees-container">
+          <div id="allEmployeesList" class="employees-list">
+            <!-- All employees will be populated here -->
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Leave Approval Modal -->
+  <div id="leaveModal" class="leave-modal">
+    <div class="leave-card">
+      <span class="close" id="closeLeaveModal">&times;</span>
+      <h3>Leave Request Details</h3>
+      <div id="leaveDetails">
+        <!-- Leave details will be populated here -->
+      </div>
+      <div class="modal-actions">
+        <button id="approveBtn" class="approve-btn">Approve</button>
+        <button id="declineBtn" class="decline-btn">Decline</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kronos Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <h2>Kronos</h2>
+      <ul>
+        <li class="active">🏠 Dashboard</li>
+        <li>🕓 Check In/Out</li>
+        <li>📅 Attendance</li>
+        <li id="leaveMenu">📝 Leave</li>
+        <li>⚙️ Settings</li>
+        <li id="logoutBtn">🚪 Logout</li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header>
+        <div class="menu-icon" id="menuBtn">☰</div>
+        <h1 id="welcomeMessage">Hello, Employee 👋</h1>
+        <p id="date"></p>
+      </header>
+
+      <section class="cards">
+        <!-- Check-In / Check-Out -->
+        <div class="card fade-in">
+          <h3>Check-In / Check-Out</h3>
+          <button id="checkInBtn">Check In</button>
+          <button id="checkOutBtn">Check Out</button>
+          <p id="status">Status: Not Checked In</p>
+          <p class="location">📍 Location: <span id="location">Fetching...</span></p>
+        </div>
+
+        <!-- Attendance -->
+        <div class="card fade-in">
+          <h3>Attendance</h3>
+          <div class="progress-circle">
+            <div class="progress" id="progress"></div>
+            <div class="progress-text" id="attendancePercent">82%</div>
+          </div>
+          <p>This Month</p>
+        </div>
+
+        <!-- History -->
+        <div class="card fade-in">
+          <h3>History</h3>
+          <ul id="historyList">
+            <li>24 Oct: Checked In at 9:00 AM</li>
+            <li>23 Oct: Checked Out at 6:10 PM</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Leave Modal -->
+  <div class="leave-modal" id="leaveModal">
+    <div class="leave-card">
+      <h3>Apply Leave</h3>
+      <form id="leaveForm">
+        <label for="leaveType">Leave Type</label>
+        <select id="leaveType" required>
+          <option value="CL">Casual Leave</option>
+          <option value="SL">Sick Leave</option>
+          <option value="EL">Earned Leave</option>
+        </select>
+
+        <label for="startDate">Start Date</label>
+        <input type="date" id="startDate" required>
+
+        <label for="endDate">End Date</label>
+        <input type="date" id="endDate" required>
+
+        <label for="reason">Reason</label>
+        <textarea id="reason" placeholder="Enter reason..." required></textarea>
+
+        <button type="submit">Apply</button>
+        <button type="button" id="closeLeave">Cancel</button>
+      </form>
+
+      <h4>Leave History</h4>
+      <ul id="leaveHistoryList"></ul>
+    </div>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

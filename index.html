@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kronos - Workforce Management</title>
+  <link rel="stylesheet" href="landing.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <h1>Kronos</h1>
+      </div>
+      <nav class="nav">
+        <button class="login-btn" onclick="window.location.href='login.html'">Login</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h2>Transforming Workforce Management</h2>
+        <p>Streamline attendance tracking, leave management, and employee productivity with our comprehensive workforce management solution.</p>
+        <div class="hero-buttons">
+          <button class="primary-btn" onclick="window.location.href='login.html'">Get Started</button>
+          <button class="secondary-btn" onclick="scrollToFeatures()">Learn More</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <section class="features" id="features">
+    <div class="container">
+      <h3>Key Features</h3>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📍</div>
+          <h4>Location Tracking</h4>
+          <p>Automatic location capture for accurate attendance records</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h4>Real-time Analytics</h4>
+          <p>Comprehensive attendance reports and productivity insights</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📝</div>
+          <h4>Leave Management</h4>
+          <p>Streamlined leave application and approval process</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h4>Secure Access</h4>
+          <p>Role-based authentication and data protection</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Kronos. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function scrollToFeatures() {
+      document.getElementById('features').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

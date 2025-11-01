@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: kronos-web
+    env: node
+    plan: free
+    region: oregon
+    buildCommand: npm ci
+    startCommand: npm start
+    autoDeploy: true
+    # Do NOT store secrets in this file. Set MONGO_URI and JWT_SECRET in the Render dashboard under Environment
+    # If you prefer to set env vars here (not recommended for secrets), add them under envVars as key/value pairs.

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kronos Login</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-card">
+      <h1>Kronos</h1>
+      <h3>Transforming Workforce Management</h3>
+      <form id="loginForm">
+        <div class="role-selection">
+          <label class="role-label">
+            <input type="radio" name="userRole" value="employee" checked>
+            <span class="role-text">Employee</span>
+          </label>
+          <label class="role-label">
+            <input type="radio" name="userRole" value="admin">
+            <span class="role-text">Admin</span>
+          </label>
+        </div>
+
+        <label for="employeeId">Employee ID</label>
+        <input type="text" id="employeeId" placeholder="Enter your ID" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password" required>
+
+        <button type="submit">Login</button>
+        <div class="form-footer">
+          <a href="#" id="forgotPasswordLink">Forgot Password?</a>
+        </div>
+        <p id="errorMsg"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Forgot Password Modal -->
+  <div id="forgotPasswordModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <h2>Reset Password</h2>
+      <p>Enter your Employee ID and set a new password.</p>
+      <form id="forgotPasswordForm">
+        <label for="resetEmployeeId">Employee ID</label>
+        <input type="text" id="resetEmployeeId" placeholder="Enter your Employee ID" required>
+
+        <label for="newPassword">New Password</label>
+        <input type="password" id="newPassword" placeholder="Enter new password" required>
+
+        <label for="confirmNewPassword">Confirm New Password</label>
+        <input type="password" id="confirmNewPassword" placeholder="Confirm new password" required>
+
+        <button type="submit">Reset Password</button>
+        <p id="resetMsg"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

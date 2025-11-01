@@ -1,0 +1,280 @@
+/* ---------- Global ---------- */
+* { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', sans-serif; }
+body { background: #f8f9fa; color:#495057; display:flex; min-height:100vh; }
+
+/* ---------- Container ---------- */
+.container { display:flex; width:100%; }
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+  width:230px;
+  background: #ffffff;
+  padding:30px 20px;
+  flex-shrink:0;
+  border-right:1px solid #dee2e6;
+  transition:0.3s ease;
+  z-index:10;
+}
+.sidebar h2 { text-align:center; color:#007bff; margin-bottom:30px; font-weight:600; }
+.sidebar ul { list-style:none; }
+.sidebar li { padding:12px; margin:8px 0; border-radius:4px; cursor:pointer; transition:0.3s; color:#495057; }
+.sidebar li:hover, .sidebar li.active { background:#007bff; color:#ffffff; }
+
+/* ---------- Main Content ---------- */
+.main-content { flex:1; padding:40px; overflow-y:auto; }
+header { display:flex; justify-content:space-between; align-items:center; margin-bottom:40px; flex-wrap:wrap; }
+header h1 { font-size:1.8rem; font-weight:500; color:#495057; }
+#date { color:#6c757d; font-size:0.95rem; }
+.menu-icon { display:none; font-size:1.8rem; cursor:pointer; margin-right:10px; }
+
+/* ---------- Cards ---------- */
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:25px; }
+.card { background: #ffffff; border-radius:8px; padding:25px; box-shadow:0 2px 10px rgba(0, 0, 0, 0.1); transition:0.3s ease; animation:fadeInUp 0.8s ease; }
+.card:hover { transform:translateY(-2px); box-shadow:0 4px 15px rgba(0, 0, 0, 0.15); }
+
+/* ---------- Buttons ---------- */
+button { padding:10px 18px; margin:6px; border:none; border-radius:4px; background-color:#007bff; color:#ffffff; font-weight:600; cursor:pointer; transition:0.3s; }
+button:hover { background-color:#0056b3; }
+
+/* ---------- Status ---------- */
+#status { margin-top:10px; font-weight:500; transition:0.5s; }
+.checked-in { color:#28a745; }
+.location { margin-top:10px; font-size:0.9rem; color:#6c757d; }
+
+/* ---------- Attendance Circle ---------- */
+.progress-circle { position: relative; width:120px; height:120px; border-radius:50%; background: conic-gradient(#28a745 0deg, #e9ecef 0deg); display:flex; justify-content:center; align-items:center; margin:20px auto; animation:rotateIn 1.5s ease; }
+.progress-text { position:absolute; font-size:22px; font-weight:600; color:#495057; }
+
+/* ---------- Animations ---------- */
+@keyframes fadeInUp { from{opacity:0; transform:translateY(30px);} to{opacity:1; transform:translateY(0);} }
+@keyframes rotateIn { from{transform:rotate(-180deg); opacity:0;} to{transform:rotate(0deg); opacity:1;} }
+
+/* ---------- Leave Modal ---------- */
+.leave-modal {
+  position: fixed; top:0; left:0; width:100%; height:100%;
+  background: rgba(0, 0, 0, 0.5);
+  display:none; justify-content:center; align-items:center; z-index:20;
+}
+.leave-card {
+  background: #ffffff;
+  padding:30px; border-radius:8px; width:350px; max-width:90%;
+  animation:fadeIn 0.5s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.leave-card form { display:flex; flex-direction:column; gap:10px; margin-bottom:20px; }
+.leave-card label { color:#495057; font-size:0.9rem; text-align:left; }
+.leave-card input, .leave-card select, .leave-card textarea { padding:10px; border:1px solid #ced4da; border-radius:4px; outline:none; background: #ffffff; color:#495057; }
+.leave-card textarea { resize:none; height:60px; }
+.leave-card button { margin-top:10px; }
+.leave-card h4 { margin-top:20px; color:#007bff; }
+.leave-card ul { list-style:none; max-height:150px; overflow-y:auto; padding-left:10px; }
+
+/* ---------- Responsive ---------- */
+@media (max-width:900px) {
+  .container{flex-direction:column;}
+  .sidebar{position:fixed; left:-250px; top:0; height:100%; transition:left 0.3s ease;}
+  .sidebar.show{left:0;}
+  .menu-icon{display:block;}
+  .main-content{padding:20px;}
+  .cards{grid-template-columns:1fr;}
+}
+/* ---------- Admin Dashboard Styles ---------- */
+
+/* Leave Requests */
+.leave-section h2, .checked-in-section h2, .all-employees-section h2 {
+  color: #495057;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+.leave-requests-container, .checked-in-container, .employees-container {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.leave-request-card, .employee-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-left: 4px solid #007bff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.leave-request-card:hover, .employee-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.leave-request-card.pending {
+  border-left-color: #ffc107;
+}
+
+.leave-request-card.approved {
+  border-left-color: #28a745;
+}
+
+.leave-request-card.declined {
+  border-left-color: #dc3545;
+}
+
+.employee-card.checked-in {
+  border-left-color: #28a745;
+}
+
+.leave-info h4, .employee-info h4 {
+  margin-bottom: 10px;
+  color: #495057;
+  font-size: 1.1rem;
+}
+
+.leave-info p, .employee-info p {
+  margin: 5px 0;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.status-pending {
+  color: #ffc107;
+  font-weight: 600;
+}
+
+.status-approved {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.status-declined {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+.status-indicator {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+
+.status-indicator.checked-in {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-indicator.checked-out {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.status-indicator.online {
+  background: #d1ecf1;
+  color: #0c5460;
+}
+
+.leave-actions {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.view-btn {
+  background: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.view-btn:hover {
+  background: #0056b3;
+}
+
+/* Leave Modal */
+.leave-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.3s ease;
+}
+
+.leave-card {
+  background: #ffffff;
+  margin: 10% auto;
+  padding: 30px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  animation: slideDown 0.3s ease;
+}
+
+.leave-card h3 {
+  color: #495057;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.leave-detail p {
+  margin: 10px 0;
+  color: #495057;
+  font-size: 0.95rem;
+}
+
+.modal-actions {
+  margin-top: 25px;
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+}
+
+.approve-btn {
+  background: #28a745;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.approve-btn:hover {
+  background: #218838;
+}
+
+.decline-btn {
+  background: #dc3545;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.decline-btn:hover {
+  background: #c82333;
+}
+
+/* Dashboard Metrics */
+.metric {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #007bff;
+  margin-top: 10px;
+}
